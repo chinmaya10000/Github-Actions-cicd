@@ -18,13 +18,10 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
     
-    - name: Run GitLeaks Scan
+    - name: Setup GitLeaks
       uses: gitleaks/gitleaks-action@v2
-      with:
-        scan-dir: .
-        report-format: json
-        report-path: gitleaks-report.json
-        fail: true
+    - name: Run GitLeaks
+      run: gitleaks detect --source . --report gitleaks-report.json --report-format json
     
     - name: Upload GitLeaks Report
       uses: actions/upload-artifact@v4
