@@ -18,15 +18,13 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
     
-    - name: Install Gitleaks 
-      run: |
-        curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64 -o gitleaks
-        chmod +x gitleaks
-        sudo mv gitleaks /usr/local/bin/
-    
-    - name: Run Gitleaks Scan 
-      run: |
-        gitleaks detect --source . --report-path gitleaks-report.json --exit-code 1
+    - name: Run GitLeaks Scan
+      uses: gitleaks/gitleaks-action@v2
+      with:
+        scan-dir: .
+        report-format: json
+        report-path: gitleaks-report.json
+        fail: true
     
 
   build:
