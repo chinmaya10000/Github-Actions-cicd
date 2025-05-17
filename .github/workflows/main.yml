@@ -12,14 +12,14 @@ on:
 jobs:
 
   gitleaks:
-    runs-on: label-1
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
     
     - name: Install GitLeaks
-      run: sudo apt-get install gitleaks -y
+      uses: zricethezav/gitleaks-action@v1
 
     - name: Run GitLeaks
       run: gitleaks detect --verbose --source . -f json -r gitleaks.json
