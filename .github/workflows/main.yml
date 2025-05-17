@@ -58,8 +58,8 @@ jobs:
     - name: Upload Target Directory
       uses: actions/upload-artifact@v4
       with:
-        name: build-target
-        path: target/
+        name: app-jar
+        path: target/*.jar
     
     - name: Upload Test Reports
       uses: actions/upload-artifact@v4
@@ -87,7 +87,7 @@ jobs:
     - name: Restore Target Directory
       uses: actions/download-artifact@v4
       with:
-        name: build-target
+        name: app-jar
         path: target/
 
     - name: SonarQube Scan
@@ -130,11 +130,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     
-    - name: Restore Target Directory
+    - name: Download JAR artifact
       uses: actions/download-artifact@v4
       with:
-        name: build-target
-        path: target/
+        name: app-jar
+        path: app
 
     - name: Setup Docker Buildx
       uses: docker/setup-buildx-action@v3
