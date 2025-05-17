@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Install GitLeaks
-      uses: zricethezav/gitleaks-action@v1
+      uses: gitleaks/gitleaks-action@v2
 
     - name: Run GitLeaks
       run: gitleaks detect --verbose --source . -f json -r gitleaks.json
