@@ -21,13 +21,13 @@ jobs:
     - name: Setup GitLeaks
       uses: gitleaks/gitleaks-action@v2
     - name: Run GitLeaks
-      run: gitleaks detect --source . --report gitleaks-report.json --report-format json
+      run: gitleaks detect --verbose --source . -f json -r gitleaks.json
     
     - name: Upload GitLeaks Report
       uses: actions/upload-artifact@v4
       with:
         name: gitleaks-report
-        path: gitleaks-report.json
+        path: gitleaks.json
     
 
   build:
